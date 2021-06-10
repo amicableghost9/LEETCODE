@@ -1,0 +1,92 @@
+
+#include <iostream>
+using namespace std;
+class Node {
+    public:
+   int data;
+   Node *next;
+};
+ Node* head = NULL;
+
+void insertbeginning(int newdata) {
+   Node* newnode = new Node();
+   newnode->data = newdata;
+   newnode->next = head;
+   head = newnode;
+}
+void insertAfter(int givendata,int newdata) 
+{   Node* prevnode;
+    Node* temp;
+ 
+    temp=head;
+    while(temp!=NULL)
+    {
+        if(temp->data==givendata)
+        {
+             prevnode=temp;
+            break;
+        }
+        
+        temp=temp->next;
+        
+    }
+   
+    
+   
+    // 2. Allocate new node
+    Node* newnode = new Node();
+   
+    // 3. Put in the data
+    newnode->data = newdata; 
+   
+    // 4. Make next of new node as
+    // next of prev_node
+    newnode->next = prevnode->next; 
+   
+    // 5. move the next of prev_node
+    // as new_node
+    prevnode->next = newnode; 
+}
+void insertend(int newdata)
+{
+   Node* ptr=head;
+    Node* xtr=new Node();
+    xtr->data=newdata;
+     if (head == NULL) 
+    { 
+        head = xtr; 
+        return; 
+    } 
+    
+    while(ptr->next!=NULL)
+    {
+        ptr=ptr->next;
+    }
+    ptr->next=xtr;
+    xtr->next=NULL;
+
+    
+    
+}
+void display() {
+   Node* ptr;
+   ptr = head;
+   while (ptr != NULL) {
+      cout<< ptr->data <<" ";
+      ptr = ptr->next;
+   }
+}
+int main() {
+   
+   insertbeginning(3);
+   insertbeginning(1);
+   insertbeginning(7);
+   insertbeginning(2);
+   insertbeginning(9);
+   insertAfter(7,8);
+    insertend(6);
+    
+   cout<<"The linked list is: ";
+   display();
+   return 0;
+}
