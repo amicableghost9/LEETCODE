@@ -1,0 +1,67 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+int s[1000];
+int top=-1;
+void push(int n,int x)
+{   
+    if(top==n)
+    {
+        cout<<"overflow";
+    }
+    else
+    {
+        top++;
+        s[top]=x;
+    }
+}
+int pop ()  
+{   
+    if(top == -1)   
+    {  
+        return 0;
+        
+    }  
+    else  
+    {  
+         return (top=top-1);
+         
+    }    
+}   
+int peek()  
+{  
+    if (top == -1)   
+    {  
+        cout<<"underflow";
+        return 0;
+    }  
+    else  
+    {  
+        return s[top];  
+    }  
+}  
+
+void display()
+{
+    for(int i=top;i>=0;i--)
+    {
+        cout<<s[i];
+    }
+    if(top==-1)
+    {
+        cout<<"stack is empty";
+    }
+}
+    
+    
+int main()
+{
+
+    push(1000,3);
+    push(1000,2);
+    push(1000,1);
+    push(1000,6);
+    cout<<peek();
+    
+    
+}
