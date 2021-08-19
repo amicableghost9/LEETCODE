@@ -13,23 +13,64 @@ class Node
     }
 };
 
+Node* takeinput()
+    
+{
+    int data;
+    cin>>data;
+    Node* head=NULL;
+    Node* tail=NULL;
+    
+    while(data!=-1)
+    {
+         Node* newnode=new Node(data);
+    
+        if(head==NULL)
+        {
+            head=newnode;
+            tail=newnode;
+            
+        }
+        else
+        {
+            tail->next=newnode;
+            tail=newnode;
+        }
+    cin>>data;
+    }
+    return head;
+}
+    
+void display(Node* head)
+{
+    Node* ptr=head;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data;
+        ptr=ptr->next;
+    }
+    
+
+}
+
 
 int main()
 {  //statically
-    Node n1(1);
+   /* Node n1(1);
     Node *head=&n1;
     Node n2(2);
     n1.next=&n2;
     cout<<n1.data;
-    return 0;
+    return 0;*/
     
     //dynamically
-    Node *n3=new Node(10);
+  /*  Node *n3=new Node(10);
     Node *head=n3;
     Node *n4=new Node(20);
     n3->next=n4;
+    display(head);*/
+    Node* head = takeinput();
+    display(head);
+    
     
 }
-
-    
-    
