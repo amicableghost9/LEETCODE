@@ -12,6 +12,30 @@ class Node
         next=NULL;
     }
 };
+Node* insertnode(Node* head,int i ,int data)
+{   int count=0;
+    Node* temp=head;
+    Node* newnode=new Node(data);
+    if(i==0)
+    {
+        newnode->next=head;
+        head=newnode;
+        return head;
+        
+    }
+    while(temp!=NULL && count<i-1)
+    {
+        temp=temp->next;
+        count++;
+    }
+        if(temp!=NULL)
+        {
+            newnode->next=temp->next;
+            temp->next=newnode;
+        }
+    
+ return head;
+}
 
 Node* takeinput()
     
@@ -70,6 +94,10 @@ int main()
     n3->next=n4;
     display(head);*/
     Node* head = takeinput();
+    int i;
+    int data;
+    cin>>i>>data;
+    head=insertnode(head,i,data);
     display(head);
     
     
