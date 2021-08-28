@@ -1,0 +1,160 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Node
+{
+    public:
+    int data;
+    Node *next;
+    
+    Node(int data)
+    {
+        this->data=data;
+        next=NULL;
+    }
+};
+ Node* reverse(Node* &head)
+    {
+        // Initialize current, previous and
+        // next pointers
+        Node* currentnode = head;
+        Node* prevnode = NULL;
+        Node* nextnode = head;
+ 
+        while (nextnode!= NULL)
+        {
+            nextnode=nextnode->next;
+            currentnode->next=prevnode;
+            prevnode=currentnode;
+            currentnode=nextnode;
+        }
+      head=prevnode;
+     return head;
+  }
+Node* Deletenode(Node* &head ,int i)
+{   int count=0;
+    Node* temp=head;
+ 
+ 
+    if(i==0)
+    {
+        Node*c=head;
+        head=c->next;
+        delete(c);
+        return head;
+        
+    }
+    while(temp!=NULL && count<i-1)
+    {
+        temp=temp->next;
+        count++;
+        
+    }
+    if(temp!=NULL)
+    {
+        Node*a=temp->next;
+        Node*b=a->next;
+        temp->next=b;
+        delete a;
+        
+            
+    }
+ return head;
+ 
+}
+Node* insertnode(Node* &head,int i ,int data)
+{   int count=0;
+    Node* temp=head;
+    Node* newnode=new Node(data);
+    if(i==0)
+    {
+        newnode->next=head;
+        head=newnode;
+        return head;
+        
+    }
+    while(temp!=NULL && count<i-1)
+    {
+        temp=temp->next;
+        count++;
+    }
+        if(temp!=NULL)
+        {
+            newnode->next=temp->next;
+            temp->next=newnode;
+        }
+    
+ return head;
+}
+
+Node* takeinput()
+    
+{
+    int data;
+    cin>>data;
+    Node* head=NULL;
+    Node* tail=NULL;
+    
+    while(data!=-1)
+    {
+         Node* newnode=new Node(data);
+    
+        if(head==NULL)
+        {
+            head=newnode;
+            tail=newnode;
+            
+        }
+        else
+        {
+            tail->next=newnode;
+            tail=newnode;
+        }
+    cin>>data;
+    }
+    return head;
+}
+    
+void display(Node* &head)
+{
+    Node* ptr=head;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data;
+        ptr=ptr->next;
+    }
+    cout<<endl;
+}
+
+
+int main()
+{  //statically
+   /* Node n1(1);
+    Node *head=&n1;
+    Node n2(2);
+    n1.next=&n2;
+    cout<<n1.data;
+    return 0;*/
+    
+    //dynamically
+  /*  Node *n3=new Node(10);
+    Node *head=n3;
+    Node *n4=new Node(20);
+    n3->next=n4;
+    display(head);*/
+    Node* head1 = takeinput();
+    Node* head2 =takeinput();
+    int i;
+    int data;
+    cin>>i>>data;
+    head1=insertnode(head1,i,data);
+    display(head1);
+    head1=Deletenode(head1,6);
+    head1=Deletenode(head1,0);
+    display(head1);
+    display(head2);
+    head1=reverse(head1);
+    display(head1);
+    return 0;
+    
+    
+}
