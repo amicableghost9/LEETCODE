@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std;
+class queueusingarray
+{
+    int* data;
+    int nextindex;
+    int firstindex;
+    int capacity;
+    int size;
+    public:
+    queueusingarray(int s)
+    {   capacity=s;
+        data=new int[s];
+        nextindex=0;
+        firstindex=-1;
+        size=0;
+    }
+    
+    int sizee()
+    {
+        return size;
+    }
+    bool isempty()
+    {
+        return size==0;
+    }
+    
+    void enqueue(int element)
+    {   
+        if(size==capacity)
+        {
+            cout<<"full";
+        }
+        data[nextindex]=element;
+        nextindex=((nextindex+1)%capacity);
+        if(firstindex==-1)
+        {
+            firstindex=0;
+        }
+        size++;
+    }
+    int front()
+    {
+        if(isempty())
+        {   
+            cout<<"empty"<<endl;
+            return 0;
+        }
+        return data[firstindex];
+    }
+    int dequeue()
+    {
+        if(isempty())
+        {
+            return 0;
+        }
+        int ans=data[firstindex];
+        firstindex=(firstindex=1)%capacity;
+        size-=1;
+        if(size==0)
+        {
+            firstindex=-1;
+            nextindex=0;
+        }
+        return ans;
+        
+    }
+};
+int main()
+{
+    queueusingarray q(5);
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    cout<<q.dequeue()<<endl;
+    cout<<q.sizee()<<endl;
+    return 0;
+    
+}
+    
